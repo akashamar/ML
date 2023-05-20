@@ -1,0 +1,7 @@
+* Import the data
+* clean the data (duplicate data)
+* split the data into training and test set (like 80% training and 20% test data)
+* Create the model
+* Train thr model
+* Make prediction
+* Evaluate and improve

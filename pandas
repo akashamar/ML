@@ -1,0 +1,6 @@
+import pandas as pd 
+
+* pd.read_csv(file_path) : to read the csv file
+* pd.shape : to get the column and row counts
+* pd.describe : check data statistics
+* pd.values : get the 2d array of data

@@ -1,3 +1,4 @@
+==supervicesed_learning=======
 kNeighbors
 Naive Bayes
 Logistic regression
@@ -5,3 +6,7 @@ Support vector
 Neural network
 classification
 Linear regression
+
+==unsupervised_learning=======
+k-means Clustering
+principal component analysis
