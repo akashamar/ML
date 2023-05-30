@@ -1,0 +1,8 @@
+* supervised_learning
+ => Classification (Binary value or discrete) (Also multi class Classification)
+ => regression (Linear and Logistic)
+    * simple linear regression
+    * multiple linear regression
+    * polynomial linear regression
+* unsupervised_learning
+* re_enforcement_learning
