@@ -1,0 +1,22 @@
+To access historical weather data including rainfall and other factors, you can consider using weather APIs that provide historical weather information. Here are a few popular weather APIs that offer historical weather data:
+
+OpenWeatherMap Historical Weather Data API: OpenWeatherMap provides historical weather data, including rainfall, temperature, humidity, and wind conditions. You can specify a location and date range to retrieve past weather information. Their API documentation provides details on how to access historical weather data: https://openweathermap.org/api/one-call-api
+
+Weatherbit Historical Weather API: Weatherbit offers historical weather data, including precipitation, temperature, humidity, and wind speed. You can retrieve historical weather information for a specific location and time period using their API. The documentation provides information on how to access historical weather data: https://www.weatherbit.io/api/meta
+
+Climacell Weather API: Climacell provides historical weather data with various parameters, including precipitation, temperature, humidity, and wind. Their API allows you to retrieve historical weather data for a specific location and time frame. You can refer to their API documentation for more details: https://www.climacell.co/weather-api/
+
+Please note that these APIs may require an API key, and some may have limitations or pricing plans for accessing historical weather data. Make sure to review their documentation and terms of use to ensure they meet your specific requirements.
+
+# api
+
+- OpenWeatherMap
+  => key: 14f26a9def72c49290dc144a9b9ae5f6
+  => https://api.openweathermap.org/data/3.0/onecall?lat=33.44&lon=-94.04&exclude=daily&appid=14f26a9def72c49290dc144a9b9ae5f6
+
+- Weather bit
+  => key: 02172fc03b5946df9ae9f5935bbccde3
+
+- Tomorrow APi
+  => https://api.tomorrow.io/v4/timelines?location=40.75872069597532,-73.98529171943665&fields=temperature&timesteps=1h&units=metric&apikey=MnxJvTijEz1WbIrdIknaJCUywMMpRQXT
+  => Key: MnxJvTijEz1WbIrdIknaJCUywMMpRQXT
