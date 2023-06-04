@@ -1,0 +1,4 @@
+time,temperature,shortwave_radiation,precipitation,rain,windspeed,windgusts,winddirection,et0_fao_evapotranspiration
+2022-12-01,25.8,20.33,0.00,0.00,11.4,23.4,229,4.23
+2022-12-02,26.0,19.05,0.00,0.00,11.2,20.9,137,4.09
+2022-12-03,27.2,18.89,0.00,0.00,11.5,23.4,145,4.07
