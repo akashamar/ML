@@ -11,19 +11,15 @@ Please note that these APIs may require an API key, and some may have limitation
 # api
 
 - OpenWeatherMap
-  => key: 14f26a9def72c49290dc144a9b9ae5f6
-  => https://api.openweathermap.org/data/3.0/onecall?lat=33.44&lon=-94.04&exclude=daily&appid=14f26a9def72c49290dc144a9b9ae5f6
+  => https://api.openweathermap.org/data/3.0/onecall?lat=33.44&lon=-94.04&exclude=daily&appid={apiKey}
 
 - Weather bit
-  => key: 02172fc03b5946df9ae9f5935bbccde3
 
 - Tomorrow APi
-  => https://api.tomorrow.io/v4/timelines?location=40.75872069597532,-73.98529171943665&fields=temperature&timesteps=1h&units=metric&apikey=MnxJvTijEz1WbIrdIknaJCUywMMpRQXT
-  => Key: MnxJvTijEz1WbIrdIknaJCUywMMpRQXT
+  => https://api.tomorrow.io/v4/timelines?location=40.75872069597532,-73.98529171943665&fields=temperature&timesteps=1h&units=metric&apikey={apiKey}
 
 - Weatherstack
   => https://weatherstack.com/dashboard
-  => Key: e26a9b3adf7014168e7d404a47a26d87
 
 - https://open-meteo.com/en/docs/historical-weather-api#latitude=13.36&longitude=74.76&start_date=2021-04-01&end_date=2022-04-01&daily=temperature_2m_mean&timezone=Asia%2FSingapore
 - https://open-meteo.com/en/docs/historical-weather-api#latitude=13.36&longitude=74.76&start_date=2022-12-01&end_date=2022-12-03&daily=temperature_2m_mean,shortwave_radiation_sum,precipitation_sum,rain_sum,windspeed_10m_max,windgusts_10m_max,winddirection_10m_dominant,et0_fao_evapotranspiration&timezone=Asia%2FSingapore

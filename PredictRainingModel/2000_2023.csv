@@ -1,4 +1,4 @@
-time,temperature,shortwave_radiation,precipitation,rain,windspeed,windgusts,winddirection,et0_fao_evapotranspiration
+time,temperature,shortwave_radiation,precipitation,rain,wind_speed,wind_gusts,wind_direction,et0_fao_evapotranspiration
 2000-01-01,26.1,19.81,0.20,0.20,17.8,33.1,227,4.58
 2000-01-02,25.9,20.49,0.00,0.00,19.3,35.6,252,4.76
 2000-01-03,25.9,20.05,0.00,0.00,18.1,34.2,307,4.71
