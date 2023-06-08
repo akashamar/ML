@@ -1,78 +1,61 @@
 import numpy as np
 import pandas as pd
+import requests
+import colorama
 from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import train_test_split
 import matplotlib.pyplot as plt
 from sklearn.metrics import r2_score, mean_squared_error
 
-# read 23 years weather report 
-df = pd.read_csv('2000_2023.csv')
+def determine_rain(x):
+    if x >= 2.5:
+        return 1
+    else:
+        return 0
 
-# precipitation greater than or equal to 2.5mm means rain
-df['rain'] = df['precipitation'].apply(lambda x: 1 if x >= 2.5 else 0)
+def read_weather_data_from_csv(filename):
+    df = pd.read_csv(filename)
+    df['rain'] = df['precipitation'].apply(determine_rain)
+    df = df.drop(['precipitation', 'time'], axis=1)
+    return df
 
-# remove precipitation and time column
-df = df.drop(['precipitation', 'time'], axis=1)
+def read_weather_data_from_api(X_train, api_url):
+    response = requests.get(api_url)
+    data = response.json()
+    dailyData = data["daily"]
+    temperature, shortwave_radiation, wind_speed, wind_gusts, wind_direction, et0_fao_evapotranspiration = dailyData["temperature_2m_max"][0], dailyData["shortwave_radiation_sum"][0], dailyData["windspeed_10m_max"][0], dailyData["windgusts_10m_max"][0], dailyData["winddirection_10m_dominant"][0], dailyData["et0_fao_evapotranspiration"][0]
+    user_values = [
+        [temperature, shortwave_radiation, wind_speed, wind_gusts, wind_direction, et0_fao_evapotranspiration],
+    ]
+    print("Temperature:", temperature)
+    print("Shortwave Radiation:", shortwave_radiation)
+    print("Wind Speed:", wind_speed)
+    print("Wind Gusts:", wind_gusts)
+    print("Wind Direction:", wind_direction)
+    print("ET0 FAO Evapotranspiration:", et0_fao_evapotranspiration)
+    manual_df = pd.DataFrame(user_values, columns=X_train.columns)
+    return manual_df
 
-# Get the column names of the dataset
-columns = df.columns
+def main():
+    df = read_weather_data_from_csv('2000_2023.csv')
+    X = df.drop('rain', axis=1)
+    y = df['rain']
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    model = LinearRegression()
+    model.fit(X_train, y_train)
+    y_pred = model.predict(X_test)
+    y_pred_labels = (y_pred >= 0.5).astype(int)
+    accuracy = (y_pred_labels == y_test.values).mean()
+    print("Model Accuracy:", accuracy)
+    manual_df = read_weather_data_from_api(X_train, "https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&daily=temperature_2m_max,windspeed_10m_max,windgusts_10m_max,winddirection_10m_dominant,shortwave_radiation_sum,et0_fao_evapotranspiration&timezone=Asia%2FSingapore")
+    manual_predictions = model.predict(manual_df)
+    # Prediction part with color
+    prediction = "It will rain today" if manual_predictions >= 0.5 else "It will not rain today"
+    if manual_predictions >= 0.5:
+        prediction_color = colorama.Fore.BLUE + prediction + colorama.Fore.RESET
+    else:
+        prediction_color = colorama.Fore.RED + prediction + colorama.Fore.RESET
+    print(prediction_color)
 
-# check how does particular value effect the rain 
-for col1 in columns:
-    # Create a scatter plot
-    plt.scatter(df[col1], df["rain"])
-    plt.xlabel(col1)
-    plt.ylabel('rain')
-    plt.title(f'{col1} vs rain')
-    # plt.show()
-
-# Separate the features (X) and the target variable (y)
-X = df.drop('rain', axis=1)  # Features (all columns except 'rain')
-y = df['rain']  # Target variable
-
-# Split the data into train and test sets
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-
-# Create a Linear Regression model
-model = LinearRegression()
-
-# Fit the model using the training data
-model.fit(X_train, y_train)
-
-# Make predictions on the testing set
-y_pred = model.predict(X_test)
-
-# Convert predicted probabilities to binary labels based on a threshold of 0.5
-# Values above or equal to 0.5 were classified as 1 (rain), and values below 0.5 were classified as 0 (non-rain)
-y_pred_labels = (y_pred >= 0.5).astype(int)
-
-# Calculate accuracy
-accuracy = (y_pred_labels == y_test.values).mean()
-
-print("Accuracy:", accuracy)
-
-# read all the given values
-temperature = float(input("Enter temperature : "))
-shortwave_radiation = float(input("Enter shortwave radiation : "))
-wind_speed =  float(input("Enter wind speed : "))
-wind_gusts =  float(input("Enter wind gusts : "))
-wind_direction =  float(input("Enter wind direction : "))
-et0_fao_evapotranspiration =  float(input("Enter evapotranspiration : "))
-
-# Create a new feature matrix with manual values
-user_values = [
-    [ temperature, shortwave_radiation, wind_speed, wind_gusts, wind_direction, et0_fao_evapotranspiration],
-]
-
-# Convert the manual values into a DataFrame
-manual_df = pd.DataFrame(user_values, columns=X_train.columns)
-
-# Make predictions on the manual values
-manual_predictions = model.predict(manual_df)
-
-if manual_predictions >= 0.5:
-    prediction = "It will rain today"
-else:
-    prediction = "It will not rain today"
-
-print(prediction)
+if __name__ == "__main__":
+    main()
