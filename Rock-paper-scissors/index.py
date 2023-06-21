@@ -2,9 +2,10 @@ import os
 import cv2
 import joblib
 
-model = joblib.load('rock_paper_scissor_decision_tree.joblib')
+decision_tree_model = joblib.load('rock_paper_scissor_decision_tree.joblib')
+random_forest_model = joblib.load('rock_paper_scissor_random_forest.joblib')
 
-filename = 'scissor3.png'
+filename = 'rock3.png'
 image_width = 128  # Desired width
 image_height = 128  # Desired height
 
@@ -19,14 +20,23 @@ image = cv2.imread(os.path.join('./', filename))
 image = cv2.resize(image, (image_width, image_height))  # Resize the image
 hog_features = extract_hog_features(image)
 
-y_pred = model.predict([hog_features])[0]
+dt_y_pred = decision_tree_model.predict([hog_features])[0]
+rf_y_pred = random_forest_model.predict([hog_features])[0]
 
-print(y_pred)
-if y_pred == 0:
-    print(filename, 'Rock')
-elif y_pred == 1:
-    print(filename, 'Paper')
-elif y_pred == 2:
-    print(filename, 'Scissor')
+if dt_y_pred == 0:
+    print('DT', filename, 'Rock')
+elif dt_y_pred == 1:
+    print('DT', filename, 'Paper')
+elif dt_y_pred == 2:
+    print('DT', filename, 'Scissor')
 else:
-    print('Unknown value', y_pred)
+    print('Unknown value', dt_y_pred)
+
+if rf_y_pred == 0:
+    print('RF', filename, 'Rock')
+elif rf_y_pred == 1:
+    print('RF', filename, 'Paper')
+elif rf_y_pred == 2:
+    print('RF', filename, 'Scissor')
+else:
+    print('Unknown value', rf_y_pred)
