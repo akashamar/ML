@@ -1,4 +1,5 @@
 knn.joblib
 gnb.joblib
+svc.joblib
 rock_paper_scissor_decision_tree.joblib
 rock_paper_scissor_random_forest.joblib

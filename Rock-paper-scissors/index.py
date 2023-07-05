@@ -6,8 +6,9 @@ decision_tree_model = joblib.load('rock_paper_scissor_decision_tree.joblib')
 random_forest_model = joblib.load('rock_paper_scissor_random_forest.joblib')
 knn_model = joblib.load('knn.joblib')
 gaussian_nb_model = joblib.load('gnb.joblib')
+svc_model = joblib.load('svc.joblib')
 
-filename = 'scissor2.png'
+filename = 'paper3.png'
 image_width = 128  # Desired width
 image_height = 128  # Desired height
 
@@ -26,7 +27,7 @@ dt_y_pred = decision_tree_model.predict([hog_features])[0]
 rf_y_pred = random_forest_model.predict([hog_features])[0]
 knn_y_pred = knn_model.predict([hog_features])[0]
 gaussian_nb_y_pred = gaussian_nb_model.predict([hog_features])[0]
-
+svc_y_pred = svc_model.predict([hog_features])[0]
 
 def predict(modelName, value):
     if value == 0:
@@ -42,3 +43,4 @@ predict('DT', dt_y_pred)
 predict('RF', rf_y_pred)
 predict('KNN', knn_y_pred)
 predict('GNB', gaussian_nb_y_pred)
+predict('SVC', svc_y_pred)

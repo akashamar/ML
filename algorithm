@@ -3,9 +3,8 @@ kNeighbors
 Naive Bayes
 Logistic regression
 Linear regression
-Support vector
+Support vector 
 Neural network
-classification
 
 ==unsupervised_learning=======
 k-means Clustering
