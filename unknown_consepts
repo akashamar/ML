@@ -1,4 +1,3 @@
 - Finding the best fit line (reducing the residuals/error)
 - R-squared
-- Mean Squared Error
-- Variance
+- Bias and Variance

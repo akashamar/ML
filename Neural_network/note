@@ -1,0 +1,11 @@
+layers:
+
+- Input layers: the number of input layer will be equal to the features available in dataset
+- Hidden layer
+- output layer
+
+Hidden layer:
+
+- Each neuron has weight and a value which will be from 0 to 1
+- Weight of the neuron: w = (a1*w1)+(a2*w2)+(a3*w3)+.....+(an*wn) + b(bias)
+- Calculating the weight-age sum of next layer: a23 = activation_function((a1*w1)+(a2*w2)+(a3*w3)+.....+(an*wn) + b(bias))
