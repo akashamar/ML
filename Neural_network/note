@@ -9,3 +9,8 @@ Hidden layer:
 - Each neuron has weight and a value which will be from 0 to 1
 - Weight of the neuron: w = (a1*w1)+(a2*w2)+(a3*w3)+.....+(an*wn) + b(bias)
 - Calculating the weight-age sum of next layer: a23 = activation_function((a1*w1)+(a2*w2)+(a3*w3)+.....+(an*wn) + b(bias))
+
+Functions used:
+
+- Sigmoid (slow learner)
+- ReLU (fast learner)
