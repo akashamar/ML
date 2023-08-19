@@ -1,0 +1,3 @@
+- Gradient Descent
+- Batch Gradient Descent
+- Mini Batch Gradient Descent

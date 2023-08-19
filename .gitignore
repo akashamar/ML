@@ -6,3 +6,5 @@ rock_paper_scissor_random_forest.joblib
 kmeans.joblib
 captured_image.png
 .ipynb_checkpoints
+best_model.h5
+neural_network.joblib

@@ -9,6 +9,7 @@ knn_model = joblib.load('knn.joblib')
 gaussian_nb_model = joblib.load('gnb.joblib')
 svc_model = joblib.load('svc.joblib')
 kmeans_model = joblib.load('kmeans.joblib')
+neural_network = joblib.load('neural_network.joblib')
 
 image_width = 128  # Desired width
 image_height = 128  # Desired height
@@ -58,6 +59,10 @@ def makePrediction(hog_features):
     gaussian_nb_y_pred = gaussian_nb_model.predict([hog_features])[0]
     svc_y_pred = svc_model.predict([hog_features])[0]
     km_y_pred = kmeans_model.predict(hog_features.reshape(1, -1))[0]
+    neural_net_y_pred = neural_network.predict(hog_features.reshape(1, -1))[0]
+    nn_y_pred = np.argmax(neural_net_y_pred)
+    print('neural_net_y_pred_values', neural_net_y_pred)
+    predict('neural_net_y_pred', nn_y_pred)
     # Print the predictions for each model
     predict('Decision Tree', dt_y_pred)
     predict('Random Forest', rf_y_pred)
@@ -65,7 +70,7 @@ def makePrediction(hog_features):
     predict('Gaussian Naive Bayes', gaussian_nb_y_pred)
     predict('Support Vector Machine', svc_y_pred)
     predict('K-Means Clustering', km_y_pred)
-    predictions = [dt_y_pred, rf_y_pred, knn_y_pred, gaussian_nb_y_pred, svc_y_pred, km_y_pred]
+    predictions = [dt_y_pred, rf_y_pred, knn_y_pred, gaussian_nb_y_pred, svc_y_pred, km_y_pred, nn_y_pred]
     return predictions
 
 def finalPrediction(predictions):
@@ -77,6 +82,8 @@ def finalPrediction(predictions):
     predict('Final Output', final_prediction)
 
 def main():
+    # image = cv2.imread(os.path.join('./', "rock3.png"))
+    # gray = cv2.resize(image, (image_width, image_height))  # Resize the image
     gray = capture_image()
     # Extract HOG features from the grayscale frame
     hog_features = extract_hog_features(gray)
