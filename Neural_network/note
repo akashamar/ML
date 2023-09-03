@@ -25,3 +25,6 @@ For loss function
 For binary output:
 activation function: sigmoid
 loss function: binary_crossentropy
+
+F1 score:
+2*(precision * recall/precision+recall)
