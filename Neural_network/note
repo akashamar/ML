@@ -21,3 +21,7 @@ One hot encoding:
 For loss function
 * For discrete y_train use parse_categorical_entropy
 * For one hot encoding or categorical y_train use categorical_entropy
+
+For binary output:
+activation function: sigmoid
+loss function: binary_crossentropy
