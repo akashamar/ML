@@ -16,11 +16,13 @@ Functions used:
 - ReLU (fast learner)
 
 One hot encoding:
-* converting the number to array with zero and 1 in the place of the actual number as index
+
+- converting the number to array with zero and 1 in the place of the actual number as index
 
 For loss function
-* For discrete y_train use parse_categorical_entropy
-* For one hot encoding or categorical y_train use categorical_entropy
+
+- For discrete y_train use parse_categorical_entropy
+- For one hot encoding or categorical y_train use categorical_entropy
 
 For binary output:
 activation function: sigmoid
@@ -28,3 +30,11 @@ loss function: binary_crossentropy
 
 F1 score:
 2*(precision * recall/precision+recall)
+
+Solution for imbalance in the dataset
+
+- Handle imbalance using under sampling
+- Oversampling (blind copy)
+- Oversampling (SMOTE)
+- Ensemble
+- Focal loss
