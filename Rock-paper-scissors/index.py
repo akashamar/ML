@@ -2,14 +2,16 @@ import os
 import cv2
 import joblib
 import numpy as np
+import tensorflow as tf
 
-decision_tree_model = joblib.load('rock_paper_scissor_decision_tree.joblib')
-random_forest_model = joblib.load('rock_paper_scissor_random_forest.joblib')
-knn_model = joblib.load('knn.joblib')
-gaussian_nb_model = joblib.load('gnb.joblib')
-svc_model = joblib.load('svc.joblib')
-kmeans_model = joblib.load('kmeans.joblib')
-neural_network = joblib.load('neural_network.joblib')
+with tf.device('/CPU:0'):
+    decision_tree_model = joblib.load('rock_paper_scissor_decision_tree.joblib')
+    random_forest_model = joblib.load('rock_paper_scissor_random_forest.joblib')
+    knn_model = joblib.load('knn.joblib')
+    gaussian_nb_model = joblib.load('gnb.joblib')
+    svc_model = joblib.load('svc.joblib')
+    kmeans_model = joblib.load('kmeans.joblib')
+    neural_network = joblib.load('neural_network.joblib')
 
 image_width = 128  # Desired width
 image_height = 128  # Desired height
@@ -70,7 +72,7 @@ def makePrediction(hog_features):
     predict('Gaussian Naive Bayes', gaussian_nb_y_pred)
     predict('Support Vector Machine', svc_y_pred)
     predict('K-Means Clustering', km_y_pred)
-    predictions = [dt_y_pred, rf_y_pred, knn_y_pred, gaussian_nb_y_pred, svc_y_pred, km_y_pred, nn_y_pred]
+    predictions = [dt_y_pred, rf_y_pred, knn_y_pred, gaussian_nb_y_pred, svc_y_pred, km_y_pred]
     return predictions
 
 def finalPrediction(predictions):
@@ -82,9 +84,9 @@ def finalPrediction(predictions):
     predict('Final Output', final_prediction)
 
 def main():
-    # image = cv2.imread(os.path.join('./', "rock3.png"))
-    # gray = cv2.resize(image, (image_width, image_height))  # Resize the image
-    gray = capture_image()
+    image = cv2.imread(os.path.join('./', "scissor2.png"))
+    gray = cv2.resize(image, (image_width, image_height))  # Resize the image
+    # gray = capture_image()
     # Extract HOG features from the grayscale frame
     hog_features = extract_hog_features(gray)
     # Make predictions using the loaded models

@@ -10,3 +10,5 @@ best_model.h5
 neural_network.joblib
 logs
 datasets
+rock_paper_scissor_decision_tree.joblib
+rock_paper_scissor_random_forest.joblib
