@@ -1,0 +1,1 @@
+yolo predict model=yolov8s.pt source="gettyimages-618970340-612x612.jpg
